@@ -1,0 +1,428 @@
+body {
+  background-color: #212529;
+  color: #f8f9fa;
+}
+
+.code-container {
+  position: relative;
+  background-color: #2c3034;
+  border: 1px solid #495057;
+  border-radius: 4px;
+  padding-left: 50px; /* Space for line numbers */
+  overflow: hidden; /* Add this to hide overflowing line numbers */
+}
+
+.resizable {
+  position: relative;
+  height: 400px; /* Default height */
+  overflow: hidden; /* Hide overflow for textarea */
+}
+
+.code-input {
+  font-family: "Courier New", Courier, monospace;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  margin: 0;
+  border: none !important;
+  background: #2c3034 !important;
+  color: #f8f9fa;
+  outline: none !important;
+  box-shadow: none !important;
+  resize: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  caret-color: #f8f9fa; /* Ensure cursor is visible */
+  /* white-space: pre-wrap;
+  overflow-y: auto; */
+  white-space: nowrap; /* Changed from pre-wrap to nowrap to prevent line wrapping */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: auto; /* Keep vertical scrolling */
+}
+
+.line-numbers {
+  position: absolute;
+  left: 0;
+  width: 40px;
+  text-align: right;
+  color: #6c757d;
+  user-select: none;
+  height: 100%; /* Ensure it matches the container height */
+  overflow: hidden; /* Prevent line numbers from spilling out */
+}
+
+.line-numbers span {
+  display: block;
+  padding: 0 5px;
+}
+
+/* .container-fluid {
+  height: 100vh;
+  padding: 0;
+} */
+
+.result-area {
+  font-family: "Courier New", Courier, monospace;
+  min-height: 300px;
+  /* max-height: 600px; */
+  max-height: 100%; /* Now relative to parent (.container-fluid which is 100vh) */
+  overflow: auto;
+  /* overflow-x: hidden; */
+  /* white-space: pre-wrap; */
+  white-space: nowrap;
+  word-break: break-all;
+  background-color: #2c3034;
+  border-color: #495057 !important;
+  position: relative;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  padding: 2px 5px;
+  margin: 0;
+  white-space: pre;
+}
+
+.line.selected {
+  border: 2px solid #ffd700; /* Highlighted border for selected line */
+  border-radius: 4px;
+  background-color: rgba(255, 215, 0, 0.1); /* Light gold background */
+}
+
+.line-number {
+  display: inline-block;
+  width: 40px;
+  text-align: right;
+  margin-right: 10px;
+  color: #6c757d;
+  user-select: none;
+}
+
+.removed {
+  background-color: rgba(220, 53, 69, 0.3);
+  color: #ff6b6b;
+}
+
+.added {
+  background-color: rgba(40, 167, 69, 0.3);
+  color: #51cf66;
+}
+
+.unchanged {
+  color: #f8f9fa;
+}
+
+.custom-btn {
+  border: none; /* Remove outline */
+  background: none; /* No background */
+  padding: 0; /* Minimal padding */
+}
+
+.custom-btn svg {
+  transition: fill 0.2s ease; /* Smooth hover transition */
+}
+
+.custom-btn:hover svg {
+  fill: #adb5bd; /* Lighter gray on hover for visibility */
+}
+
+.btn-outline-primary {
+  border-color: #2ecc71; /* Even softer blue for Compare Differences */
+  color: #2ecc71;
+}
+
+.btn-outline-primary:hover {
+  background-color: #2ecc71;
+  /* color: #212529; */
+  border-color: #2ecc71;
+  color: #fff;
+}
+
+.merge-btn {
+  margin: 10px 0;
+  padding: 10px 20px; /* Larger button */
+  border-color: #2ecc71; /* Brighter green border */
+  /* color: #2ecc71; */
+  color: #9c9c9c;
+}
+
+.merge-btn:hover {
+  background-color: #2ecc71;
+  color: #fff;
+}
+
+.remove-btn {
+  margin: 10px 0;
+  padding: 10px 20px; /* Larger button */
+  border-color: #ad2525;
+  /* color: #ad2525; */
+  color: #9c9c9c;
+}
+
+.remove-btn:hover {
+  background-color: #ad2525;
+  color: #fff;
+}
+
+.resize-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 15px;
+  height: 15px;
+  background: #495057;
+  cursor: se-resize;
+  border-top-left-radius: 5px;
+}
+
+/* Custom rounded class for less rounded buttons */
+.custom-rounded {
+  border-radius: 0.2rem !important; /* Mimics rounded-sm */
+}
+
+@media (max-width: 768px) {
+  .result-area {
+    min-height: 200px;
+  }
+}
+
+
+/* Navbar */
+.navbar {
+  padding: 0.5rem 1rem; /* Consistent padding */
+}
+
+.navbar-brand,
+.nav-link {
+  transition: color 0.2s ease; /* Smooth color transition */
+}
+
+.navbar-brand {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-right: 1rem; /* Add some spacing between brand and link */
+  line-height: 1; /* Ensure consistent line height */
+}
+
+.nav-link {
+  color: #adb5bd; /* Light gray for contrast */
+  line-height: 1; /* Ensure consistent line height */
+}
+
+.nav-link:hover {
+  color: #2ecc71; /* Soft blue on hover to match theme */
+}
+
+.border-bottom {
+  border-bottom: 1px solid #495057 !important; /* Thin line matching theme */
+}
+
+.shadow-sm {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.d-flex.align-items-baseline {
+  align-items: baseline; /* Align text to baseline for proper bottom alignment */
+}
+/* End Navbar */
+
+/* Fix for merge hint to tell user they can click lines to merge */
+#mergeHint {
+  color: #adb5bd; /* Lighter gray for better visibility on dark background */
+}
+.mergeHint-text {
+  color: #adb5bd; /* Lighter gray for better visibility on dark background */
+}
+
+/* Header Styling for Code Areas */
+.code-header {
+  font-size: 1.1rem; /* Slightly smaller than default h4 (1.25rem) */
+  color: #adb5bd; /* Light gray to replace white-ish #f8f9fa */
+}
+
+/* NEW: Styles for scrollbars to match dark mode */
+/* For Webkit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 8px; /* Adjust width as needed */
+}
+
+::-webkit-scrollbar-track {
+  background: #2c3034; /* Dark background for the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #495057; /* Medium dark for the thumb */
+  border-radius: 4px; /* Rounded corners for the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6c757d; /* Slightly lighter on hover */
+}
+
+/* For Firefox */
+/* Note: Firefox scrollbar styling is limited */
+/* You can set the color, but advanced customization requires using the platform's theme */
+* {
+  scrollbar-color: #495057 #2c3034; /* thumb and track color */
+  scrollbar-width: thin; /* Set to 'auto', 'thin', or 'none' */
+}
+
+
+
+/* Context Menu */
+.context-menu {
+  z-index: 1000;
+  background-color: #343a40;
+  border: 1px solid #495057;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.context-menu-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 3px;
+  margin: 2px;
+  border-radius: 4px; /* Add rounded corners to buttons */
+}
+
+.context-menu-button:hover {
+  background-color: #495057; /* Slightly lighter on hover */
+}
+
+.context-menu-button svg {
+  width: 24px; /* Larger icons */
+  height: 24px;
+}
+
+/* Reversed Play Button Arrow */
+.bi-play-reverse {
+  transform: scaleX(-1);
+}
+
+/* Styles for Character-Level Highlighting */
+.char-diff {
+  background-color: rgba(255, 255, 0, 0.5); /* Yellow background for character diff */
+  color: black; /* Dark color for the text */
+}
+
+
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  top: 56px; /* Height of Bootstrap navbar (adjust if your navbar height differs) */
+  left: 0;
+  width: 250px;
+  height: calc(100vh - 56px); /* Full height minus navbar */
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.main-content {
+  margin-left: 250px;
+}
+
+.history-item {
+  background-color: #2c3034;
+  transition: background-color 0.2s ease;
+}
+
+.history-item:hover {
+  background-color: #495057;
+}
+
+/* Navbar */
+.navbar {
+  width: 100%; /* Full width */
+  padding: 0.5rem 1rem; /* Consistent padding */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+    top: 56px; /* Keep consistent with navbar height */
+    height: calc(100vh - 56px);
+  }
+  
+  .main-content {
+    margin-left: 200px;
+  }
+}
+
+
+/* Footer Styles */
+.footer {
+  /* border-top: 1px solid #495057;
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.2); */
+  color: #9c9c9c; /* Text color matches body */
+  /* Background color is inherited from body (bg-dark) by default */
+}
+
+.footer p {
+  margin: 0; 
+}
+
+
+.update-btn {
+  margin: 10px 0;
+  padding: 10px 20px;
+  border-color: #5359a3;
+  /* color: #5359a3; */
+  color: #9c9c9c;
+}
+
+.update-btn:hover {
+  background-color: #5359a3;
+  border-color: #5359a3;
+  color: #fff;
+}
+
+.context-menu-button .bi-pencil {
+  transform: scale(0.75); /* Slightly reduces size while keeping crispness */
+  transform-origin: center; /* Ensures scaling is centered */
+}
+
+
+/* Modal Fixes */
+.modal {
+  z-index: 1055;
+  opacity: 0; /* Default hidden state */
+  transition: opacity 0.3s ease; /* Manual fade control */
+}
+
+.modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-dialog {
+  z-index: 1060;
+}
+
+.modal-content {
+  background-color: #212529;
+  border: 1px solid #495057;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+  opacity: 1 !important; /* Force content to stay opaque */
+}
+
+.modal-backdrop {
+  z-index: 1050;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-backdrop.show {
+  opacity: 0.5;
+}
+
+/* Prevent modal content from inheriting fade */
+.modal.show .modal-content {
+  opacity: 1 !important;
+  pointer-events: auto;
+}
