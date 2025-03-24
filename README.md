@@ -2,8 +2,8 @@
  Easily cross-compare text or code of any sizes, or any languages for differences. Quickly apply changes via merge, update, or remove content functionality after comparing.
 
  Simply right-click or double-click on any line to interact with it after comparing values.
-
- Made with vanilla JS, and styled with Bootstrap.
+ 
+ Use for free at: https://ezdiff.pages.dev/ 
 
 ### Key Functionality 
 This diffchecker is designed to be simple, but provide functionality I've found helpful that other diffcheckers don't typically provide:
