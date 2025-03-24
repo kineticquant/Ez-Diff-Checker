@@ -12,13 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveButtons = document.querySelectorAll(".save-btn");
   const mergeHint = document.getElementById("mergeHint");
 
-  // Store original content
+  //store og content
   let originalLeftText = codeLeftInput.value;
   let originalRightText = codeRightInput.value;
   let modifiedLeftText = codeLeftInput.value;
   let modifiedRightText = codeRightInput.value;
 
-  // Context Menu creation
+  //context menu
   const contextMenu = document.createElement('div');
   contextMenu.id = 'contextMenu';
   contextMenu.style.display = 'none';
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   contextMenu.style.border = '1px solid #495057';
   contextMenu.style.borderRadius = '4px';
   contextMenu.style.padding = '5px';
-  contextMenu.className = 'context-menu'; // For CSS styling
+  contextMenu.className = 'context-menu'; // styling
 
   const mergeLeftButton = document.createElement('button');
   mergeLeftButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2ecc71" class="bi bi-play-fill bi-play-reverse" viewBox="0 0 16 16"><path d="M4.404 4.308L10.767 8l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-.919 1.233-.696z"/></svg>';
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   mergeLeftButton.style.border = 'none';
   mergeLeftButton.style.cursor = 'pointer';
   mergeLeftButton.style.padding = '3px';
-  mergeLeftButton.className = 'context-menu-button'; // For CSS styling
+  mergeLeftButton.className = 'context-menu-button'; // For styling
   contextMenu.appendChild(mergeLeftButton);
 
   const mergeRightButton = document.createElement('button');
@@ -47,12 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
   mergeRightButton.style.border = 'none';
   mergeRightButton.style.cursor = 'pointer';
   mergeRightButton.style.padding = '3px';
-  mergeRightButton.className = 'context-menu-button'; // For CSS styling
+  mergeRightButton.className = 'context-menu-button'; // For  styling
   contextMenu.appendChild(mergeRightButton);
 
   const updateButton = document.createElement('button');
   updateButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#007bff" class="bi bi-pencil" viewBox="0 0 16 16"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/></svg>';
-  updateButton.title = 'Update/Replace'; // Fixed typo in your title
+  updateButton.title = 'Update/Replace';
   updateButton.style.backgroundColor = 'transparent';
   updateButton.style.border = 'none';
   updateButton.style.cursor = 'pointer';
@@ -67,12 +67,12 @@ document.addEventListener("DOMContentLoaded", () => {
   removeButton.style.border = 'none';
   removeButton.style.cursor = 'pointer';
   removeButton.style.padding = '3px';
-  removeButton.className = 'context-menu-button'; // For CSS styling
+  removeButton.className = 'context-menu-button';
   contextMenu.appendChild(removeButton);
 
   document.body.appendChild(contextMenu);
 
-  // Function to update original content (after compare)
+  //  update original content (after compare)
   function updateOriginalContent() {
     originalLeftText = codeLeftInput.value;
     originalRightText = codeRightInput.value;
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modifiedRightText = codeRightInput.value;
   }
 
-  // Add line numbers to top boxes
+  // adds line num to top boxes
   function updateLineNumbers(container, textarea) {
     const existingNumbers = container.querySelector(".line-numbers");
     if (existingNumbers) existingNumbers.remove();
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
   updateLineNumbers(document.getElementById("leftContainer"), codeLeftInput);
   updateLineNumbers(document.getElementById("rightContainer"), codeRightInput);
 
-  // Clear buttons
+  // clear buttons
   clearLeftBtn.addEventListener("click", () => {
     codeLeftInput.value = "";
     updateLineNumbers(document.getElementById("leftContainer"), codeLeftInput);
@@ -130,24 +130,24 @@ document.addEventListener("DOMContentLoaded", () => {
     resultRight.innerHTML = "";
   });
 
-  // New logic on text cleanup / alignment (top 2 boxes)
-  // Trim buttons for removing leading spaces/tabs
+  //new logic on text cleanup / alignment (top 2 boxes)
+  //trim buttons for removing leading spaces/tabs
   const trimLeftBtn = document.getElementById("trimLeft");
   const trimRightBtn = document.getElementById("trimRight");
 
   trimLeftBtn.addEventListener("click", () => {
     codeLeftInput.value = codeLeftInput.value.split("\n").map(line => line.replace(/^\s+/, "")).join("\n");
     updateLineNumbers(document.getElementById("leftContainer"), codeLeftInput);
-    updateOriginalContent(); // Update stored content
+    updateOriginalContent(); // updates stored content
   });
 
   trimRightBtn.addEventListener("click", () => {
     codeRightInput.value = codeRightInput.value.split("\n").map(line => line.replace(/^\s+/, "")).join("\n");
     updateLineNumbers(document.getElementById("rightContainer"), codeRightInput);
-    updateOriginalContent(); // Update stored content
+    updateOriginalContent(); // updates stored content
   });
 
-  // Update line numbers on input and scroll
+  // update line num on input and scroll - fixed bug issue which caused line nums to duplicate out of container
   [codeLeftInput, codeRightInput].forEach((textarea) => {
     textarea.addEventListener("input", () => {
       updateLineNumbers(textarea.closest(".code-container"), textarea);
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Compare button
+  // compare button
   compareBtn.addEventListener("click", () => {
     const leftText = codeLeftInput.value;
     const rightText = codeRightInput.value;
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    updateOriginalContent(); // Store current content
+    updateOriginalContent();
     const diff = computeDiff(leftText, rightText);
     displayDiff(diff, resultLeft, resultRight);
 
@@ -175,14 +175,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const mergeHint = document.getElementById("mergeHint");
     mergeHint.style.display = "block";
 
-    // Scroll to the "Original (Differences Highlighted)" section
+    // scroll to the "Original (Differences Highlighted)" section on sub
     document.getElementById("resultLeft").scrollIntoView({
       behavior: "smooth",
       block: "start"
     });
   });
 
-  // Copy buttons
+  // Copy
   copyButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       const target = document.getElementById(btn.dataset.target);
@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Save buttons
+  // Save -
   saveButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       const target = document.getElementById(btn.dataset.target);
@@ -211,12 +211,12 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         content = target.value;
       }
-      const filename = "diffchecker_content.txt"; // Default filename
+      const filename = "diffchecker_content.txt"; // default filename
       downloadFile(content, filename);
     });
   });
 
-  // Function to trigger file download
+  // trigger file download
   function downloadFile(content, filename) {
     const element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
@@ -230,7 +230,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.removeChild(element);
   }
 
-  // Compute diff
   function computeDiff(text1, text2) {
     const lines1 = text1.split("\n");
     const lines2 = text2.split("\n");
@@ -255,6 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return matrix;
   }
 
+  // try to refrain from modifying, was a PITA to figure this out
   function backtrack(lines1, lines2, lcsMatrix) {
     const diff = [];
     let i = lines1.length;
@@ -276,124 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return diff;
   }
 
-  // Display diff with selection handling
-  function displayDiff(diff, leftResult, rightResult) {
-    leftResult.innerHTML = "";
-    rightResult.innerHTML = "";
-    let leftLineNumber = 1;
-    let rightLineNumber = 1;
-
-    diff.forEach((item, index) => {
-      const lineElement = document.createElement("div");
-      lineElement.className = `line ${item.type}`;
-      lineElement.dataset.index = index;
-
-      const lineNumberSpan = document.createElement("span");
-      lineNumberSpan.className = "line-number";
-
-      const lineContentSpan = document.createElement("span");
-      lineContentSpan.className = "line-content";
-      lineContentSpan.textContent = item.line;
-
-      if (item.type === "unchanged" || item.type === "removed") {
-        lineNumberSpan.textContent = leftLineNumber++;
-        const leftLine = lineElement.cloneNode(true);
-        leftLine.append(lineNumberSpan.cloneNode(true), lineContentSpan.cloneNode(true));
-        leftResult.appendChild(leftLine);
-      }
-
-      if (item.type === "unchanged" || item.type === "added") {
-        lineNumberSpan.textContent = rightLineNumber++;
-        const rightLine = lineElement.cloneNode(true);
-        rightLine.append(lineNumberSpan.cloneNode(true), lineContentSpan.cloneNode(true));
-        rightResult.appendChild(rightLine);
-      }
-    });
-
-    // Add double-click selection event listeners
-    [leftResult, rightResult].forEach((result, side) => {
-      result.addEventListener("dblclick", (e) => {
-        const line = e.target.closest(".line");
-        if (!line) return;
-
-        // Remove existing selection
-        document.querySelectorAll(".line.selected").forEach(el => el.classList.remove("selected"));
-
-        // Add selection highlight
-        line.classList.add("selected");
-        const index = parseInt(line.dataset.index);
-        showMergeButton(line, diff[index], side === 0 ? "left" : "right");
-      });
-
-      // Right-click context menu
-      result.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-        const line = e.target.closest('.line');
-        if (!line) return;
-
-        // Remove existing selection
-        document.querySelectorAll(".line.selected").forEach(el => el.classList.remove("selected"));
-
-        // Add selection highlight
-        line.classList.add("selected");
-        const index = parseInt(line.dataset.index);
-        const diffItem = diff[index]; // Get the diff item
-
-        // Determine which side we are on and show appropriate buttons
-        if (side === 0) { // Left side
-          mergeLeftButton.style.display = 'none';
-          mergeRightButton.style.display = 'inline-block';
-        } else { // Right side
-          mergeLeftButton.style.display = 'inline-block';
-          mergeRightButton.style.display = 'none';
-        }
-
-        contextMenu.style.top = `${e.pageY}px`;
-        contextMenu.style.left = `${e.pageX}px`;
-        contextMenu.style.display = 'block';
-
-        // Merge Left action
-        mergeLeftButton.onclick = () => {
-          mergeLine(diffItem, 'right'); // Merge to the right
-          contextMenu.style.display = 'none';
-          line.classList.remove("selected");
-        };
-
-        // Merge Right action
-        mergeRightButton.onclick = () => {
-          mergeLine(diffItem, 'left'); // Merge to the left
-          contextMenu.style.display = 'none';
-          line.classList.remove("selected");
-        };
-
-        // Remove action
-        removeButton.onclick = () => {
-          removeLine(diffItem);
-          contextMenu.style.display = 'none';
-          line.classList.remove("selected");
-        };
-
-        // Update action
-        updateButton.style.display = 'inline-block';
-        updateButton.onclick = () => {
-          updateLine(diffItem, side === 0 ? "right" : "left");
-          contextMenu.style.display = 'none';
-          line.classList.remove("selected");
-        };
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function clickOutside(event) {
-          if (!contextMenu.contains(event.target)) {
-            contextMenu.style.display = 'none';
-            line.classList.remove("selected");
-            document.removeEventListener('click', clickOutside);
-          }
-        });
-      });
-    });
-  }
-
-  // Show merge button in the dedicated container
+  //shows merge button in the dedicated container
   function showMergeButton(lineElement, diffItem, side) {
     const existingButton = document.querySelector(".merge-btn");
     if (existingButton) existingButton.remove();
@@ -405,7 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const removeBtn = document.createElement("button");
     removeBtn.className = "btn btn-outline-danger custom-rounded remove-btn";
     removeBtn.textContent = "Remove Selected Line";
-    removeBtn.style.marginLeft = "10px"; /* Adds 10px space to the left of removeBtn */
+    removeBtn.style.marginLeft = "10px"; /* ddds 10px space to the left of removeBtn */
 
     const updateBtn = document.createElement("button");
     updateBtn.className = "btn btn-outline-primary custom-rounded update-btn";
@@ -454,9 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { once: true });
   }
 
-  // Merge selected line at the correct position
   function mergeLine(diffItem, side) {
-    // Create copies of the *modified* text
     let newLeftText = modifiedLeftText.split("\n");
     let newRightText = modifiedRightText.split("\n");
 
@@ -468,11 +349,9 @@ document.addEventListener("DOMContentLoaded", () => {
       newLeftText.splice(insertIndex, 0, diffItem.line);
     }
 
-    // Join the text and update the *modified* variables
     modifiedLeftText = newLeftText.join("\n");
     modifiedRightText = newRightText.join("\n");
 
-    // Re-display the diff based on the *modified* text
     displayDiff(computeDiff(modifiedLeftText, modifiedRightText), resultLeft, resultRight);
   }
 
@@ -490,11 +369,9 @@ document.addEventListener("DOMContentLoaded", () => {
     modifiedLeftText = newLeftText.join("\n");
     modifiedRightText = newRightText.join("\n");
 
-    // Re-display the diff based on the *modified* text
     displayDiff(computeDiff(modifiedLeftText, modifiedRightText), resultLeft, resultRight);
   }
 
-  // New update function
   function updateLine(diffItem, side) {
     let newLeftText = modifiedLeftText.split("\n");
     let newRightText = modifiedRightText.split("\n");
@@ -519,6 +396,7 @@ document.addEventListener("DOMContentLoaded", () => {
     displayDiff(computeDiff(modifiedLeftText, modifiedRightText), resultLeft, resultRight);
   }
 
+  // works but has a weird bug with the line numbers
   // Resizing functionality
   /*
   const resizableContainers = document.querySelectorAll(".resizable");
@@ -565,7 +443,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (newHeight > 200) {
         container.style.height = `${newHeight}px`;
         resizableContainers.forEach(c => (c.style.height = `${newHeight}px`));
-        // Remove the updateLineNumbers call from here
+        // Removed the updateLineNumbers call from here
       }
     });
 
@@ -574,9 +452,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Add sample code
-  codeLeftInput.value = 'function calculateSum(a, b) {\n  // Add two numbers\n  return a + b;\n}\n\nconst result = calculateSum(5, 10);\nconsole.log("The sum is: " + result);';
-  codeRightInput.value = "function calculateSum(a, b) {\n  // Add two numbers together\n  return a + b;\n}\n\n// Calculate the result\nconst result = calculateSum(5, 10);\nconsole.log(`The sum is: ${result}`);";
+  // My Example Code - To do maybe add ? or toggle for help and use as an example to show it working:
+  // codeLeftInput.value = 'function calculateSum(a, b) {\n  // Add two numbers\n  return a + b;\n}\n\nconst result = calculateSum(5, 10);\nconsole.log("The sum is: " + result);';
+  // codeRightInput.value = "function calculateSum(a, b) {\n  // Add two numbers together\n  return a + b;\n}\n\n// Calculate the result\nconst result = calculateSum(5, 10);\nconsole.log(`The sum is: ${result}`);";
+  codeLeftInput.value = '';
+  codeRightInput.value = "";
 
   originalLeftText = codeLeftInput.value;
   originalRightText = codeRightInput.value;
@@ -587,19 +467,6 @@ document.addEventListener("DOMContentLoaded", () => {
   updateLineNumbers(document.getElementById("rightContainer"), codeRightInput);
 });
 
-// History Functionality
-function initializeHistory() {
-  const historyList = document.getElementById('historyList');
-  const comparisons = JSON.parse(localStorage.getItem('diffcheckerHistory')) || [];
-  
-  // Display existing history
-  comparisons.forEach((comp, index) => {
-    addHistoryItem(comp, index);
-  });
-
-  // Add event listener to Compare button for history
-  compareBtn.addEventListener('click', saveToHistory);
-}
 
 function saveToHistory() {
   const leftInput = codeLeftInput.value;
@@ -619,7 +486,7 @@ function saveToHistory() {
   };
 
   const comparisons = JSON.parse(localStorage.getItem('diffcheckerHistory')) || [];
-  comparisons.unshift(comparison); // Add to beginning
+  comparisons.unshift(comparison);
   localStorage.setItem('diffcheckerHistory', JSON.stringify(comparisons));
   
   addHistoryItem(comparison, 0);
@@ -637,7 +504,7 @@ function addHistoryItem(comparison, index) {
   `;
   
   historyItem.addEventListener('click', () => loadComparison(comparison));
-  historyList.prepend(historyItem); // Add to top
+  historyList.prepend(historyItem);
 }
 
 function loadComparison(comparison) {
@@ -646,15 +513,14 @@ function loadComparison(comparison) {
   resultLeft.innerHTML = comparison.leftResult;
   resultRight.innerHTML = comparison.rightResult;
   
-  // Update line numbers
   updateLineNumbers(document.getElementById("leftContainer"), codeLeftInput);
   updateLineNumbers(document.getElementById("rightContainer"), codeRightInput);
   
-  // Show merge hint if there are results
+  // Show merge hint if there are results to compare
   mergeHint.style.display = (comparison.leftResult || comparison.rightResult) ? 'block' : 'none';
 }
 
-// Initialize history when DOM is loaded
+// Initialize history when DOM is loaded (history.js)
 document.addEventListener("DOMContentLoaded", () => {
   initializeHistory();
 });

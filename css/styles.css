@@ -303,10 +303,21 @@ body {
   transform: scaleX(-1);
 }
 
+/* Styles for Character-Level Highlighting - Originally was yellow on both sides */
+/* .char-diff {
+  background-color: rgba(255, 255, 0, 0.5); 
+  color: black; 
+} */
+
 /* Styles for Character-Level Highlighting */
-.char-diff {
-  background-color: rgba(255, 255, 0, 0.5); /* Yellow background for character diff */
-  color: black; /* Dark color for the text */
+.char-diff-left {
+  background-color: rgba(250, 117, 117, 0.5); /* Pink background for left side (original) */
+  color: #000; /* Black text for contrast */
+}
+
+.char-diff-right {
+  background-color: rgba(59, 201, 92, 0.753); /* Green background for right side (modified) */
+  color: #000; /* Black text for contrast */
 }
 
 
