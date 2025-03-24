@@ -15,3 +15,4 @@ This diffchecker is designed to be simple, but provide functionality I've found 
     - and for the 2 input boxes: Remove any/all leading spaces or tabs
 
 ### Example:
+![Example](https://github.com/user-attachments/assets/175eacd7-f531-4e7b-9daf-82b57dd18da6)
