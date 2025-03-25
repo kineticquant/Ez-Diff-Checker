@@ -359,7 +359,7 @@ body {
 
 .sidebar-toggle {
   position: absolute; /* Changed from fixed to absolute 3.25.25 */
-  top: 66px; /* Position relative to the navbar! */
+  top: 63px; /* Position relative to the navbar! */
   left: 10px;
   z-index: 101; /* Ensure it stays above the sidebar (z-index 100) */
   background: none;
