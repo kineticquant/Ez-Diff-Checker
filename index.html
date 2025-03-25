@@ -23,8 +23,22 @@
     </div>
   </nav>
   <!-- End Navbar -->
+  <!-- Toggle button for sidebar - Fix for mobile responsiveness -->
+   <!-- Toggle Button for Sidebar -->
+  <button class="btn sidebar-toggle d-md-none" id="sidebarToggle" aria-label="Toggle Sidebar">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#f8f9fa" class="bi bi-list" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+    </svg>
+  </button>
+<!-- End toggle btn -->
+
   <!-- History Sidebar -->
 <div class="sidebar bg-dark border-end border-secondary" id="historySidebar">
+    <!-- Forced padding for History header instead of CSS class mod
+    Forcing mobile menu icon to display properly without overlap and not trying to handle all edge cases of padding
+    3.25.25 Mobile Responsive fix
+    -->
+  <br><br>
     <div class="d-flex justify-content-between align-items-center p-3">
         <h4 class="code-header m-0">History</h4>
         <button class="btn btn-sm custom-btn" id="clearHistoryBtn" title="Clear History" type="button" data-bs-toggle="modal" data-bs-target="#clearHistoryModal">
@@ -220,5 +234,6 @@
   <script src="js/display-diff.js"></script> -->
   <script src="js/history.js"></script>
   <script src="js/cache-clear.js"></script>
+  <script src="js/sidebar-toggle.js"></script>
 </body>
 </html>
