@@ -7,7 +7,7 @@
 
 ### Key Functionality 
 This diffchecker is designed to be simple, but provide functionality I've found helpful that other diffcheckers don't typically provide:
-1) Auto-saves history locally with no required server-side setup or config
+1) Auto-saves history locally with no required server-side setup or config, no installation, and no authentication
 2) All input and output boxes contain their own dedicated buttons to:
     - Copy content to Clipboard
     - Save content locally
