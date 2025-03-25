@@ -322,19 +322,57 @@ body {
 
 
 /* Sidebar Styles */
-.sidebar {
+/*  Original style (works!) but replaced with below for mobile responsive fix - 3.25.25 */
+/* .sidebar {
   position: fixed;
-  top: 56px; /* Height of Bootstrap navbar (adjust if your navbar height differs) */
+  top: 56px;
   left: 0;
   width: 250px;
-  height: calc(100vh - 56px); /* Full height minus navbar */
+  height: calc(100vh - 56px);
   overflow-y: auto;
   z-index: 100;
+} */
+
+.sidebar {
+  position: fixed;
+  top: 56px; /* Height of navbar */
+  left: -250px; /* Hidden by default on mobile */
+  width: 250px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+  z-index: 100;
+  transition: left 0.3s ease; /* Smooth slide in/out */
 }
 
+.sidebar.active {
+  left: 0; /* Show sidebar when active */
+}
+
+/* Original but replaced w/ below for mobile responsive fix - 3.25.25
 .main-content {
   margin-left: 250px;
+} */
+.main-content {
+  margin-left: 0; /* No margin by default on mobile */
+  transition: margin-left 0.3s ease;
 }
+
+.sidebar-toggle {
+  position: absolute; /* Changed from fixed to absolute 3.25.25 */
+  top: 66px; /* Position relative to the navbar! */
+  left: 10px;
+  z-index: 101; /* Ensure it stays above the sidebar (z-index 100) */
+  background: none;
+  border: none;
+  padding: 10px; /* Increased padding for more clickable area */
+}
+
+/* Hide the toggle button when sidebar is active - 3.25.25 fix */
+.sidebar.active + .sidebar-toggle {
+  display: none; /* Hide the button when sidebar is open */
+}
+
+/*  end main and sidebar log */
 
 .history-item {
   background-color: #2c3034;
@@ -352,18 +390,41 @@ body {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+/* Original media but replaced with mobile fox 3.25.25 */
+/* @media (max-width: 768px) {
   .sidebar {
     width: 200px;
-    top: 56px; /* Keep consistent with navbar height */
+    top: 56px;
     height: calc(100vh - 56px);
   }
   
   .main-content {
     margin-left: 200px;
   }
+} */
+
+/* mobile and desktop styling responsiveness fix 3.25.25 */
+@media (min-width: 768px) {
+  .sidebar {
+    left: 0; /* Visible by default on desktop */
+  }
+
+  .main-content {
+    margin-left: 250px; /* Push content to the right */
+  }
+
+  .sidebar-toggle {
+    display: none; /* Hide toggle button on desktop */
+  }
 }
 
+/* Adjust main content when sidebar is active on mobile */
+@media (max-width: 767px) {
+  .main-content.sidebar-active {
+    margin-left: 250px; /* Shift content when sidebar is open */
+  }
+}
+/* END mobile and desktop styling responsiveness fix 3.25.25 */
 
 /* Footer Styles */
 .footer {
